@@ -38,4 +38,5 @@ Open a `Terminal.app` in your applications directory, then run these commands, o
    ```
    sudo ./cycript -p GrowlVoice fix_growlvoice.js
    ```
-   
+
+Each time you restart GrowlVoice, you will need to run this fix script again.  Run `cd ~/cycript && sudo ./cycript -p GrowlVoice fix_growlvoice.js` to run the script sometime later.
