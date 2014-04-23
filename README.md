@@ -1,6 +1,6 @@
 ## How to Use ##
 
-Open a `Terminal.app` in your /Applications/Utilities directory, then run these commands, one after each other:
+Open up `Terminal.app` in your `/Applications/Utilities` directory, then type in these commands, one after each other:
 
 1. Create a temporary directory for cycript:
    ```
