@@ -14,7 +14,7 @@
  *  - Download cycript from cycript.org, and extract somewhere sane
  *  - download this script to the same place as cycript
  *  - Start GrowlVoice (it will complain about malformed JSON)
- *  - Run ./cycript -p GrowlVoice fix_growlvoice.js
+ *  - Run sudo ./cycript -p GrowlVoice fix_growlvoice.js
  */
 
 @import com.saurik.substrate.MS
