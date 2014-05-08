@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+# This copy of GrowlVoice has been patched with https://github.com/szhu/fix-growlvoice.
+# See the repo for more infomation.
+
+from os.path import join, split
+from sys import argv, stderr
+from subprocess import Popen, PIPE
+
+gv_path = join(split(argv[0])[0], 'GrowlVoice')
+gv = Popen([gv_path], stderr=PIPE)
+
+injected = False
+
+while True:
+	line = gv.stderr.readline()
+	if not injected and 'Signing in with ' in line:
+		print 'triggering inject fix_growlvoice.js'
+		touch = Popen(['/usr/bin/env', 'touch', '/tmp/fix_growlvoice'])
+		injected = True
+	if line == '': break
+	stderr.write(line)
+
+gv.wait()

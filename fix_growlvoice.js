@@ -1,5 +1,8 @@
 /**
  * A quick n' dirty hack to fix a dying GrowlVoice
+ * https://gist.github.com/kroo/11205755
+ * 
+ * repackaged as part of https://github.com/szhu/fix-growlvoice
  *
  * GrowlVoice is now officially dead: https://twitter.com/GrowlVoice/status/455931023868448768
  * However, Google didn't really shut off API access (there wasn't really any to begin with);
@@ -17,6 +20,10 @@
  *  - Run sudo ./cycript -p GrowlVoice fix_growlvoice.js
  */
 
+// http://iphonedevwiki.net/index.php/Cycript_Tricks#Using_NSLog
+NSLog_ = dlsym(RTLD_DEFAULT, "NSLog")
+NSLog = function() { var types = 'v', args = [], count = arguments.length; for (var i = 0; i != count; ++i) { types += '@'; args.push(arguments[i]); } new Functor(NSLog_, types).apply(null, args); }
+
 @import com.saurik.substrate.MS
 
 var oldm = {},
@@ -33,6 +40,9 @@ var oldm = {},
 //
 // Using MobileSubstrate, the following line 'swizzles' the method, replacing 
 // it with our own wrapper function:
+
+NSLog('fix_growlvoice.js: injected');
+
 MS.hookMessage(GoogleVoiceLoginInterface, MESSAGE, function (fetcher, data, err) {
   // In particular, we need to find a json object embedded in the page that was
   // just returned into this function (as the second arg, data).

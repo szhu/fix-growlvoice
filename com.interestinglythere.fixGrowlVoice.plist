@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.interestinglythere.fixGrowlVoice</string>
+	<key>ProcessType</key>
+	<string>Interactive</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Library/Application Support/GrowlVoice/cycript/cycript</string>
+		<string>-p</string>
+		<string>GrowlVoice</string>
+		<string>/Library/Application Support/GrowlVoice/fix_growlvoice.js</string>
+	</array>
+	<key>WatchPaths</key>
+	<array>
+		<string>/tmp/fix_growlvoice</string>
+	</array>
+	<key>ThrottleInterval</key>
+	<integer>1</integer>
+</dict>
+</plist>
