@@ -5,6 +5,7 @@
 from os.path import join, split
 from sys import argv, stderr
 from subprocess import Popen, PIPE
+# from time import sleep
 
 gv_path = join(split(argv[0])[0], 'GrowlVoice')
 gv = Popen([gv_path], stderr=PIPE)
@@ -13,9 +14,19 @@ injected = False
 
 while True:
 	line = gv.stderr.readline()
-	if not injected and 'Signing in with ' in line:
-		print 'triggering inject fix_growlvoice.js'
+	if not injected and 'Automatically Signing In...' in line:
+		print 'fix_growlvoice: triggering inject'
 		touch = Popen(['/usr/bin/env', 'touch', '/Library/Application Support/GrowlVoice/patch_now'])
+
+		# # Something like this may be needed to prevent race conditions
+		# kill_stop = Popen(['/usr/bin/env', 'kill', '-TSTP', str(gv.pid)])
+		# kill_stop.wait()
+		# touch.wait()
+		# print 'fix_growlvoice: sleep'
+		# sleep(0.1)
+		# print 'fix_growlvoice: endsleep'
+		# kill_cont = Popen(['/usr/bin/env', 'kill', '-CONT', str(gv.pid)])
+
 		injected = True
 	if line == '': break
 	stderr.write(line)
