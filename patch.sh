@@ -8,7 +8,8 @@
 # - download a fresh copy of GrowlVoice
 # 
 # To revert the GrowlVoice app manually
-# - replace /path/to/GrowlVoice.app with /path/to/GrowlVoice.app/Contents/MacOS/GrowlVoice.app
+# - replace /path/to/GrowlVoice.app/Contents with /path/to/GrowlVoice.app/Contents/MacOS/GrowlVoice.app/Contents
+# or run unpatch_app.sh
 
 set -e
 
@@ -38,28 +39,31 @@ SIGNAL="$SUPPORT_DIR"/'patch_now'
 set -x
 
 ## Install cycript ##
-
+echo 'Install cycript'
 mkdir -p "$CYCRIPT_DIR"
 curl -L 'https://cydia.saurik.com/api/latest/3' -o 'cycript.zip'
 unzip 'cycript.zip' -d "$CYCRIPT_DIR"
 cp 'fix_growlvoice.js' "$SUPPORT_DIR"/
 
-## Move stuff ##
+## Make a backup & unpatch ##
+echo 'Make a backup & unpatch'
+cp -RPp "$APP" "$APP"' (Backup '"$(date '+%Y%m%d.%H%M%S')"').app'
+./unpatch_app.sh "$APP"
 
-if [ ! -d "$NEW_APP" ] ; then
-	mv "$APP"/'Contents' "$APP"/'Contents-old'
-	mkdir -p "$NEW_APP"
-	mv "$APP"/'Contents-old' "$NEW_APP"/'Contents'
-	ln -s 'MacOS'/"$APP_NAME"/'Contents'/{'Info.plist','Resources','PkgInfo'} "$APP"/'Contents'/
-fi
+## Move stuff ##
+echo 'Move stuff'
+mv "$APP"/'Contents' "$APP"/'Contents-old'
+mkdir -p "$NEW_APP"
+mv "$APP"/'Contents-old' "$NEW_APP"/'Contents'
+ln -s 'MacOS'/"$APP_NAME"/'Contents'/{'Info.plist','Resources','PkgInfo'} "$APP"/'Contents'/
 
 ## Install helper ##
-
+echo 'Install helper'
 cp 'GrowlVoice-helper' "$HELPER_EXE"
 chmod 777 "$HELPER_EXE"
 
 ## Install LaunchDaemon ##
-
+echo 'Install LaunchDaemon'
 cp 'com.interestinglythere.fixGrowlVoice.plist' "$LAUNCHD_DIR"/
 touch "$SIGNAL"
 chmod 777 "$SIGNAL"

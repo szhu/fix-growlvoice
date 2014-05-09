@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# Attempts to unpatch app. Back up the app before proceeding!
+
+set -e
+
+## Variables ##
+
+if [ -z "$1" ] ; then
+	APP='/Applications/GrowlVoice.app'
+else
+	APP="$1"
+fi
+
+if [ ! -d "$APP" ] ; then
+	echo "GrowlVoice doesn't exist at $APP."
+	echo "usage: sudo $0 [/path/to/GrowlVoice.app]"
+	exit 1
+fi
+
+APP_NAME='GrowlVoice.app'
+NEW_APP="$APP"/'Contents/MacOS'/"$APP_NAME"
+EXE_NAME='GrowlVoice'
+HELPER_EXE_NAME='GrowlVoice-helper'
+HELPER_EXE="$APP"/'Contents/MacOS'/"$HELPER_EXE_NAME"
+
+
+## Unpatch app ##
+echo 'Unpatch app'
+
+# undo main patch
+if [ -d "$NEW_APP" ] ; then
+	echo 'Undo main patch'
+	set -x
+	mv "$NEW_APP"/'Contents' "$APP"/'Contents-new'
+	rm -rf "$APP"/'Contents'
+	mv "$APP"/'Contents-new' "$APP"/'Contents'
+fi
+
+# undo alternate patch
+if [ -f "$HELPER_EXE" ] ; then
+	echo 'Undo alternate patch'
+	set -x
+	rm "$HELPER_EXE"
+	defaults write "$APP"/'Contents/Info' CFBundleExecutable "$EXE_NAME"
+	chmod a+r "$APP"/'Contents/Info.plist'
+fi
