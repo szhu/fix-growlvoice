@@ -48,7 +48,7 @@ cp 'fix_growlvoice.js' "$SUPPORT_DIR"/
 ## Install helper ##
 
 cp -p "$ORIG_EXE" "$HELPER_EXE"
-cp 'GrowlVoice-helper' "$HELPER_EXE"
+cp 'alternate/GrowlVoice-helper' "$HELPER_EXE"
 # chmod --reference "$ORIG_EXE" "$HELPER_EXE" # unsupported on Mac, so use cp -p above
 defaults write "$APP"/'Contents/Info' CFBundleExecutable "$HELPER_EXE_NAME"
 chmod a+r "$APP"/'Contents/Info.plist'
