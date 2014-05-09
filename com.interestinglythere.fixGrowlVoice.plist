@@ -15,7 +15,7 @@
 	</array>
 	<key>WatchPaths</key>
 	<array>
-		<string>/tmp/fix_growlvoice</string>
+		<string>/Library/Application Support/GrowlVoice/patch_now</string>
 	</array>
 	<key>ThrottleInterval</key>
 	<integer>1</integer>

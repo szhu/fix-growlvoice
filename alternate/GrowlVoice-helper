@@ -15,7 +15,7 @@ while True:
 	line = gv.stderr.readline()
 	if not injected and 'Signing in with ' in line:
 		print 'triggering inject fix_growlvoice.js'
-		touch = Popen(['/usr/bin/env', 'touch', '/tmp/fix_growlvoice'])
+		touch = Popen(['/usr/bin/env', 'touch', '/Library/Application Support/GrowlVoice/patch_now'])
 		injected = True
 	if line == '': break
 	stderr.write(line)

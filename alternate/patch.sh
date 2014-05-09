@@ -5,7 +5,6 @@
 # To revert this patch:
 # - delete /Library/Application Support/GrowlVoice
 # - delete /Library/LaunchDaemons/com.interestinglythere.fixGrowlVoice.plist
-# - optionally delete /tmp/fix_growlvoice
 # - download a fresh copy of GrowlVoice
 # 
 # To revert the GrowlVoice app manually
@@ -34,7 +33,7 @@ CYCRIPT_DIR="$SUPPORT_DIR"/'cycript'
 ORIG_EXE="$APP"/'Contents/MacOS/GrowlVoice'
 HELPER_EXE_NAME='GrowlVoice-helper'
 HELPER_EXE="$APP"/'Contents/MacOS'/"$HELPER_EXE_NAME"
-SIGNAL='/tmp/fix_growlvoice'
+SIGNAL="$SUPPORT_DIR"/'patch_now'
 
 set -x
 
@@ -58,4 +57,5 @@ chmod a+r "$APP"/'Contents/Info.plist'
 cp 'com.interestinglythere.fixGrowlVoice.plist' "$LAUNCHD_DIR"/
 touch "$SIGNAL"
 chmod 777 "$SIGNAL"
+launchctl remove 'com.interestinglythere.fixGrowlVoice' || true # don't fail on error
 launchctl load '/Library/LaunchDaemons'/'com.interestinglythere.fixGrowlVoice.plist'
