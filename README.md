@@ -2,7 +2,7 @@ Want to use GrowlVoice without the hassle of manually running a hack each time? 
 
 ## Features
 
-In short: after patching, the app should work just like before.
+In short, this patch will make app should work just like before.
 
 - Launch the app by launching the app, just like you used to!
 - The "bad JSON" popup should never show up in the first place (no unreliable GUI scripting required).
@@ -13,16 +13,16 @@ In short: after patching, the app should work just like before.
 Please backup `GrowlVoice.app` beforehand!
 
 1. From an admin account, download and `cd` to this repo.
-2. `sudo bash patch.sh [/path/to/GrowlVoice.app]`
+2. `sudo bash patch.sh /path/to/GrowlVoice.app`
 3. Open GrowlVoice and enjoy!
 
 Want this all together? Log into an admin account and:
 
     git clone https://github.com/szhu/fix-growlvoice.git
     cd fix-growlvoice
-    sudo bash patch.sh [/path/to/GrowlVoice.app]
+    sudo bash patch.sh /path/to/GrowlVoice.app
 
-(`/path/to/GrowlVoice.app` is `/Applications/GrowlVoice.app` by default.)
+(`/path/to/GrowlVoice.app` is `/Applications/GrowlVoice.app` if you leave it out.)
 
 ## Limitations
 
@@ -30,12 +30,11 @@ Want this all together? Log into an admin account and:
 
 ## Uninstalling
 
-in case Google suddenly decides to make GrowlVoice work again
+In case Google suddenly decides to make GrowlVoice work again
 
-- delete `/Library/Application Support/GrowlVoice`
-- delete `/Library/LaunchDaemons/com.interestinglythere.fixGrowlVoice.plist`
-- optionally delete `/tmp/fix_growlvoice`
-- download a fresh copy of GrowlVoice or follow the instructions in `patch.sh` to reverse the patch for the app
+- Delete `/Library/Application Support/GrowlVoice`
+- Delete `/Library/LaunchDaemons/com.interestinglythere.fixGrowlVoice.plist`
+- Download a fresh copy of GrowlVoice or `sudo bash unpatch.sh /path/to/GrowlVoice.app`
 
 ## How it works & origins
 
@@ -43,9 +42,9 @@ in case Google suddenly decides to make GrowlVoice work again
 
 This is [@szhu](https://www.github.com/szhu)'s automation of that process. It does the following:
 
-- installs cycript and the original fix to `/Library/Application Support/GrowlVoice`
-- installs a privileged helper (LaunchDaemon) that runs whenever `/tmp/fix_growlvoice` is touched
-- modifies `GrowlVoice.app` to touch `/tmp/fix_growlvoice` at the appropriate time during launch
+- Installs cycript and the original fix to `/Library/Application Support/GrowlVoice`
+- Installs a privileged helper (LaunchDaemon) that runs whenever `/Library/Application Support/GrowlVoice/patch_now` is touched
+- Modifies `GrowlVoice.app` to touch `/Library/Application Support/GrowlVoice/patch_now` at the appropriate time during launch
 
 ## Contributing
 
