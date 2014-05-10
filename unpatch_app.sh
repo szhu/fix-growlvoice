@@ -12,6 +12,12 @@ else
 	APP="$1"
 fi
 
+# Absolute paths only
+if [[ ! "$APP" = /* ]] ; then
+	APP="$(pwd)"/"$APP"
+	echo "APP = $APP"
+fi
+
 if [ ! -d "$APP" ] ; then
 	echo "GrowlVoice doesn't exist at $APP."
 	echo "usage: sudo $0 [/path/to/GrowlVoice.app]"

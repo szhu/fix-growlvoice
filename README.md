@@ -1,5 +1,7 @@
 Want to use GrowlVoice without the hassle of manually running a hack each time? Try this!
 
+## [tl;dr](http://szhu.github.io/fix-growlvoice/)
+
 ## Features
 
 In short, this patch will make app should work just like before.
@@ -34,7 +36,7 @@ In case Google suddenly decides to make GrowlVoice work again
 
 - Delete `/Library/Application Support/GrowlVoice`
 - Delete `/Library/LaunchDaemons/com.interestinglythere.fixGrowlVoice.plist`
-- Download a fresh copy of GrowlVoice or `sudo bash unpatch.sh /path/to/GrowlVoice.app`
+- Download a fresh copy of GrowlVoice or `sudo bash unpatch_app.sh /path/to/GrowlVoice.app`
 
 ## How it works & origins
 
