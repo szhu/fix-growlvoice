@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Fix GrowlVoice! : Fix a dying GrowlVoice without requiring manual fancy magic per-launch." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Fix GrowlVoice!</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/szhu/fix-growlvoice">View on GitHub</a>
+
+          <h1 id="project_title">Fix GrowlVoice!</h1>
+          <h2 id="project_tagline">Fix a dying GrowlVoice without requiring manual fancy magic per-launch.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/szhu/fix-growlvoice/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/szhu/fix-growlvoice/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>Want to use GrowlVoice without the hassle of manually running a hack each time? Try this!</p>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<p>In short, this patch will make app should work just like before.</p>
+
+<ul>
+<li>Launch the app by launching the app, just like you used to!</li>
+<li>The "bad JSON" popup should never show up in the first place (no unreliable GUI scripting required).</li>
+<li>You can move GrowlVoice app anywhere you want.</li>
+</ul><h2>
+<a name="how-to-patch" class="anchor" href="#how-to-patch"><span class="octicon octicon-link"></span></a>How to Patch</h2>
+
+<p>Please backup <code>GrowlVoice.app</code> beforehand!</p>
+
+<ol>
+<li>From an admin account, download and <code>cd</code> to this repo.</li>
+<li><code>sudo bash patch.sh /path/to/GrowlVoice.app</code></li>
+<li>Open GrowlVoice and enjoy!</li>
+</ol><p>Want this all together? Log into an admin account and:</p>
+
+<pre><code>git clone https://github.com/szhu/fix-growlvoice.git
+cd fix-growlvoice
+sudo bash patch.sh /path/to/GrowlVoice.app
+</code></pre>
+
+<p>(<code>/path/to/GrowlVoice.app</code> is <code>/Applications/GrowlVoice.app</code> if you leave it out.)</p>
+
+<h2>
+<a name="limitations" class="anchor" href="#limitations"><span class="octicon octicon-link"></span></a>Limitations</h2>
+
+<ul>
+<li>May not work if you have multiple copies of GrowlVoice open. This isn't an additional limitation but a limitation of the cycript hack.</li>
+</ul><h2>
+<a name="uninstalling" class="anchor" href="#uninstalling"><span class="octicon octicon-link"></span></a>Uninstalling</h2>
+
+<p>In case Google suddenly decides to make GrowlVoice work again</p>
+
+<ul>
+<li>Delete <code>/Library/Application Support/GrowlVoice</code>
+</li>
+<li>Delete <code>/Library/LaunchDaemons/com.interestinglythere.fixGrowlVoice.plist</code>
+</li>
+<li>Download a fresh copy of GrowlVoice or <code>sudo bash unpatch.sh /path/to/GrowlVoice.app</code>
+</li>
+</ul><h2>
+<a name="how-it-works--origins" class="anchor" href="#how-it-works--origins"><span class="octicon octicon-link"></span></a>How it works &amp; origins</h2>
+
+<p><a href="https://www.github.com/kroo">@kroo</a> wrote an <a href="https://gist.github.com/kroo/11205755">awesome fix for GrowlVoice</a> that uses <a href="http://www.cycript.org/">cycript</a>. However, the hack must be manually run every time you launch GrowlVoice.</p>
+
+<p>This is <a href="https://www.github.com/szhu">@szhu</a>'s automation of that process. It does the following:</p>
+
+<ul>
+<li>Installs cycript and the original fix to <code>/Library/Application Support/GrowlVoice</code>
+</li>
+<li>Installs a privileged helper (LaunchDaemon) that runs whenever <code>/Library/Application Support/GrowlVoice/patch_now</code> is touched</li>
+<li>Modifies <code>GrowlVoice.app</code> to touch <code>/Library/Application Support/GrowlVoice/patch_now</code> at the appropriate time during launch</li>
+</ul><h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>I want to know whether this fix works on all kinds of setups. <strong>If this fix doesn't work for you, <a href="https://github.com/szhu/fix-growlvoice/issues">please open a new issue</a>!</strong> Pull requests are also very welcome.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Fix GrowlVoice! maintained by <a href="https://github.com/szhu">szhu</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-48076950-4");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
