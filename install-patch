@@ -1,15 +1,15 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Patches GrowlVoice with @kroo's fix.
 # 
-# To revert this patch:
+# To undo this patch:
 # - delete /Library/Application Support/GrowlVoice
 # - delete /Library/LaunchDaemons/com.interestinglythere.fixGrowlVoice.plist
-# - download a fresh copy of GrowlVoice
+# - launchctl remove com.interestinglythere.fixGrowlVoice
 # 
 # To revert the GrowlVoice app manually
 # - replace /path/to/GrowlVoice.app/Contents with /path/to/GrowlVoice.app/Contents/MacOS/GrowlVoice.app/Contents
-# or run unpatch_app.sh
+# or run: unpatch-app /path/to/GrowlVoice.app
 
 set -e
 
@@ -33,6 +33,7 @@ if [ ! -d "$APP" ] ; then
 	exit 1
 fi
 
+SRC_DIR='patch_files'
 LAUNCHD_DIR='/Library/LaunchDaemons'
 SUPPORT_DIR='/Library/Application Support/GrowlVoice'
 CYCRIPT_DIR="$SUPPORT_DIR"/'cycript'
@@ -44,21 +45,24 @@ SIGNAL="$SUPPORT_DIR"/'patch_now'
 
 set -x
 
+rm -rf "$SUPPORT_DIR"
+
 ## Install cycript ##
 echo 'Install cycript'
 mkdir -p "$CYCRIPT_DIR"
-curl -L 'https://cydia.saurik.com/api/latest/3' -o 'cycript.zip'
-unzip 'cycript.zip' -d "$CYCRIPT_DIR"
-cp 'fix_growlvoice.js' "$SUPPORT_DIR"/
-cp 'fix_growlvoice.sh' "$SUPPORT_DIR"/
+curl -L 'https://cydia.saurik.com/api/latest/3' -o '/tmp/cycript-'"$$"'.zip'
+unzip '/tmp/cycript-'"$$"'.zip' -d "$CYCRIPT_DIR"
+cp "$SRC_DIR"/'fix_growlvoice.js' "$SUPPORT_DIR"/
+cp "$SRC_DIR"/'fix_growlvoice.sh' "$SUPPORT_DIR"/
+
 chmod u+x "$SUPPORT_DIR"/'fix_growlvoice.sh'
-cp 'inject_now.sh' "$SUPPORT_DIR"/
-chmod a+x "$SUPPORT_DIR"/'inject_now.sh'
+cp "$SRC_DIR"/'patch-now' "$SUPPORT_DIR"/
+chmod a+x "$SUPPORT_DIR"/'patch-now'
 
 ## Make a backup & unpatch ##
 echo 'Make a backup & unpatch'
 cp -RPp "$APP" "$APP"' (Backup '"$(date '+%Y%m%d.%H%M%S')"').app'
-./unpatch_app.sh "$APP"
+./unpatch-app "$APP"
 
 ## Move stuff ##
 echo 'Move stuff'
@@ -69,12 +73,12 @@ ln -s 'MacOS'/"$APP_NAME"/'Contents'/{'Info.plist','Resources','PkgInfo'} "$APP"
 
 ## Install helper ##
 echo 'Install helper'
-cp 'GrowlVoice-helper' "$HELPER_EXE"
+cp "$SRC_DIR"/'GrowlVoice-helper' "$HELPER_EXE"
 chmod 777 "$HELPER_EXE"
 
 ## Install LaunchDaemon ##
 echo 'Install LaunchDaemon'
-cp 'com.interestinglythere.fixGrowlVoice.plist' "$LAUNCHD_DIR"/
+cp "$SRC_DIR"/'com.interestinglythere.fixGrowlVoice.plist' "$LAUNCHD_DIR"/
 rm -f "$SIGNAL"
 launchctl remove 'com.interestinglythere.fixGrowlVoice' || true # don't fail on error
 launchctl load '/Library/LaunchDaemons'/'com.interestinglythere.fixGrowlVoice.plist'

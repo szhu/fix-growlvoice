@@ -10,21 +10,27 @@ In short, this patch will make app should work just like before.
 - The "bad JSON" popup should never show up in the first place (no unreliable GUI scripting required).
 - You can move GrowlVoice app anywhere you want.
 
-## How to Patch
+## Patch
 
-Please backup `GrowlVoice.app` beforehand!
-
-1. From an admin account, download and `cd` to this repo.
-2. `sudo bash patch.sh /path/to/GrowlVoice.app`
-3. Open GrowlVoice and enjoy!
-
-Want this all together? Log into an admin account and:
+From an admin account and
 
     git clone https://github.com/szhu/fix-growlvoice.git
     cd fix-growlvoice
     sudo bash patch.sh /path/to/GrowlVoice.app
 
 (`/path/to/GrowlVoice.app` is `/Applications/GrowlVoice.app` if you leave it out.)
+
+That's it! Now you can enjoy using GrowlVoice again.
+
+## Alternate patch
+
+An alternate version of the patch works only for unsigned versions of GrowlVoice. If original patch doesn't work, try this one. This patch also seems to be more robust.
+
+This may work better because it modifies GrowlVoice itself instead of creating a wrapper app around it with the same name (and metadata), which may confuse some systems.
+
+This alternate patch won't work with Mac App Store versions of the app; those are [code signed](https://en.wikipedia.org/wiki/Code_signing) and refuse to run when they are modified. You will need to obtain an unsigned version of GrowlVoice. [You can find some here.](http://www.google.com/search?q=growlvoice+2.0.3+cracked) You can also self-sign the app after the patch is complete.
+
+To use, run `./patch-alternate` instead of `./patch`. `cd` to into the repo root, not to in`alternate`.
 
 ## Limitations
 
@@ -36,7 +42,7 @@ In case Google suddenly decides to make GrowlVoice work again
 
 - Delete `/Library/Application Support/GrowlVoice`
 - Delete `/Library/LaunchDaemons/com.interestinglythere.fixGrowlVoice.plist`
-- Download a fresh copy of GrowlVoice or `sudo bash unpatch_app.sh /path/to/GrowlVoice.app`
+- Download a fresh copy of GrowlVoice or `sudo bash unpatch_app /path/to/GrowlVoice.app`
 
 ## How it works & origins
 
