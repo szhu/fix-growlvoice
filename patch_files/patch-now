@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
 if [ -z "$1" ] ; then
 	echo "usage: $0 <PID or process name of GrowlVoice>"

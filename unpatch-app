@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Attempts to unpatch app. Back up the app before proceeding!
 

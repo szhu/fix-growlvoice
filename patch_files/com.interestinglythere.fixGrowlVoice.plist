@@ -12,7 +12,7 @@
 	<string>/Library/Application Support/GrowlVoice</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/bin/sh</string>
+		<string>/bin/bash</string>
 		<string>fix_growlvoice.sh</string>
 	</array>
 	<key>ThrottleInterval</key>

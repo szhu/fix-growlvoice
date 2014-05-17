@@ -50,9 +50,9 @@ In case Google suddenly decides to make GrowlVoice work again
 
 This is [@szhu](https://www.github.com/szhu)'s automation of that process. It does the following:
 
-- Installs cycript and the original fix to `/Library/Application Support/GrowlVoice`
-- Installs a privileged helper (LaunchDaemon) that runs whenever `/Library/Application Support/GrowlVoice/patch_now` is touched
-- Modifies `GrowlVoice.app` to touch `/Library/Application Support/GrowlVoice/patch_now` at the appropriate time during launch
+- Installs cycript and the original fix to `/Library/Application Support/GrowlVoice`.
+- Installs a privileged helper (LaunchDaemon) that is bound to the world-writable socket `/Library/Application Support/GrowlVoice/socket`. This allows all users to launch the helper.
+- Modifies `GrowlVoice.app` to connect to this socket on launch.
 
 ## Contributing
 

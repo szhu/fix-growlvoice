@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
 read pid
 echo "fix_growlvoice.sh: GrowlVoice PID: $pid"

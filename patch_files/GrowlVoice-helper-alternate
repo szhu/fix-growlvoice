@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 # This copy of GrowlVoice has been patched with https://github.com/szhu/fix-growlvoice.
 # See the repo for more infomation.
 
@@ -23,12 +23,12 @@ while True:
 		print 'fix_growlvoice: finished inject'
 
 		# # Something like this may be needed to prevent race conditions
-		# kill_stop = Popen(['/usr/bin/env', 'kill', '-TSTP', str(gv.pid)])
+		# kill_stop = Popen(['/bin/kill', '-TSTP', str(gv.pid)])
 		# kill_stop.wait()
 		# print 'fix_growlvoice: sleep'
 		# sleep(1)
 		# print 'fix_growlvoice: endsleep'
-		# kill_cont = Popen(['/usr/bin/env', 'kill', '-CONT', str(gv.pid)])
+		# kill_cont = Popen(['/bin/kill', '-CONT', str(gv.pid)])
 
 		injected = True
 	if line == '': break
