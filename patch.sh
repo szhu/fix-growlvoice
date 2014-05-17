@@ -50,6 +50,10 @@ mkdir -p "$CYCRIPT_DIR"
 curl -L 'https://cydia.saurik.com/api/latest/3' -o 'cycript.zip'
 unzip 'cycript.zip' -d "$CYCRIPT_DIR"
 cp 'fix_growlvoice.js' "$SUPPORT_DIR"/
+cp 'fix_growlvoice.sh' "$SUPPORT_DIR"/
+chmod u+x "$SUPPORT_DIR"/'fix_growlvoice.sh'
+cp 'inject_now.sh' "$SUPPORT_DIR"/
+chmod a+x "$SUPPORT_DIR"/'inject_now.sh'
 
 ## Make a backup & unpatch ##
 echo 'Make a backup & unpatch'
@@ -71,7 +75,6 @@ chmod 777 "$HELPER_EXE"
 ## Install LaunchDaemon ##
 echo 'Install LaunchDaemon'
 cp 'com.interestinglythere.fixGrowlVoice.plist' "$LAUNCHD_DIR"/
-touch "$SIGNAL"
-chmod 777 "$SIGNAL"
+rm -f "$SIGNAL"
 launchctl remove 'com.interestinglythere.fixGrowlVoice' || true # don't fail on error
 launchctl load '/Library/LaunchDaemons'/'com.interestinglythere.fixGrowlVoice.plist'

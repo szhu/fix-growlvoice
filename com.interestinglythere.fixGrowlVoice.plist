@@ -6,18 +6,31 @@
 	<string>com.interestinglythere.fixGrowlVoice</string>
 	<key>ProcessType</key>
 	<string>Interactive</string>
+	<key>Nice</key>
+	<integer>-5</integer>
+	<key>WorkingDirectory</key>
+	<string>/Library/Application Support/GrowlVoice</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/Library/Application Support/GrowlVoice/cycript/cycript</string>
-		<string>-p</string>
-		<string>GrowlVoice</string>
-		<string>/Library/Application Support/GrowlVoice/fix_growlvoice.js</string>
-	</array>
-	<key>WatchPaths</key>
-	<array>
-		<string>/Library/Application Support/GrowlVoice/patch_now</string>
+		<string>/bin/sh</string>
+		<string>fix_growlvoice.sh</string>
 	</array>
 	<key>ThrottleInterval</key>
 	<integer>1</integer>
+	<key>inetdCompatibility</key>
+	<dict>
+		<key>Wait</key>
+		<false/>
+	</dict>
+	<key>Sockets</key>
+	<dict>
+		<key>Listener</key>
+		<dict>
+			<key>SockPathName</key>
+			<string>/Library/Application Support/GrowlVoice/socket</string>
+			<key>SockPathMode</key>
+			<integer>49298</integer>
+		</dict>
+	</dict>
 </dict>
 </plist>

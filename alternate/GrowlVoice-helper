@@ -16,14 +16,17 @@ while True:
 	line = gv.stderr.readline()
 	if not injected and 'Automatically Signing In...' in line:
 		print 'fix_growlvoice: triggering inject'
-		touch = Popen(['/usr/bin/env', 'touch', '/Library/Application Support/GrowlVoice/patch_now'])
+		nc = Popen(['nc', '-U', '/Library/Application Support/GrowlVoice/socket'], stdin=PIPE)
+		nc.stdin.write(str(gv.pid) + '\n')
+		nc.stdin.close()
+		nc.wait()
+		print 'fix_growlvoice: finished inject'
 
 		# # Something like this may be needed to prevent race conditions
 		# kill_stop = Popen(['/usr/bin/env', 'kill', '-TSTP', str(gv.pid)])
 		# kill_stop.wait()
-		# touch.wait()
 		# print 'fix_growlvoice: sleep'
-		# sleep(0.1)
+		# sleep(1)
 		# print 'fix_growlvoice: endsleep'
 		# kill_cont = Popen(['/usr/bin/env', 'kill', '-CONT', str(gv.pid)])
 

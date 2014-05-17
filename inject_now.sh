@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+if [ -z "$1" ] ; then
+	echo "usage: $0 <PID or process name of GrowlVoice>"
+	exit 1
+fi
+
+echo "$1" | nc -U '/Library/Application Support/GrowlVoice/socket'
