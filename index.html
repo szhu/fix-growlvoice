@@ -11,7 +11,6 @@
     <meta property="og:description" content="Quick &amp; convenient fix for a dying GrowlVoice." /> 
  
     <link rel="icon" href="https://github.global.ssl.fastly.net/favicon.ico" /> 
-    <link href="styles/bootstrap.min.css" rel="stylesheet" />
     <link href="styles/cover.css" rel="stylesheet" />
 
     <!--[if lt IE 9]>
@@ -44,18 +43,18 @@
 
 <h2>Solution</h2>
 <p>Do this once and forget about it!</p>
-<pre class="stdwidth text-left inner" style="max-width: 470px">git clone https://github.com/szhu/fix-growlvoice.git
+<pre class="stdwidth text-left inner" style="max-width: 480px">git clone https://github.com/szhu/fix-growlvoice.git
 cd fix-growlvoice
-sudo ./patch.sh /path/to/GrowlVoice.app</pre>
+sudo ./install-patch /path/to/GrowlVoice.app</pre>
 
 <h2>Alternate Solution</h2>
 <p>Slightly better result, <a href="http://www.google.com/search?q=growlvoice+2.0.3+cracked">unsigned (non-App Store) apps only</a>!</p>
-<pre class="stdwidth text-left inner" style="max-width: 470px">git clone https://github.com/szhu/fix-growlvoice.git
+<pre class="stdwidth text-left inner" style="max-width: 480px">git clone https://github.com/szhu/fix-growlvoice.git
 cd fix-growlvoice
-sudo ./alternate/patch.sh /path/to/GrowlVoice.app</pre>
+sudo ./install-alternate-patch /path/to/GrowlVoice.app</pre>
 
 <h2>Uninstall</h2>
-<pre class="stdwidth text-left inner" style="max-width: 640px">sudo ./unpatch_app.sh /path/to/GrowlVoice.app
+<pre class="stdwidth text-left inner" style="max-width: 640px">sudo ./unpatch-app /path/to/GrowlVoice.app
 sudo rm -rf '/Library/Application Support/GrowlVoice'
 sudo rm /Library/LaunchDaemons/com.interestinglythere.fixGrowlVoice.plist
 sudo launchctl remove com.interestinglythere.fixGrowlVoice</pre>
