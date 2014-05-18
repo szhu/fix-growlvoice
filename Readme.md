@@ -25,6 +25,8 @@ From an admin (sudoer) account:
 
 That's it! Now you can enjoy using GrowlVoice again.
 
+New to GrowlVoice? You'll have to set up your account manually. [Read here.](For New GrowlVoice Users.md)
+
 ## Alternate patch
 
 An alternate, slightly more robust version of the patch works only for unsigned versions of GrowlVoice. If original patch doesn't work, try this one.
