@@ -1,4 +1,4 @@
-# Fix GrowlVoice!
+# Fix GrowlVoice
 
 Want to use GrowlVoice without the hassle of manually running a hack each time? Try this simple patch!
 
@@ -10,7 +10,7 @@ In short, this patch will make app should work just like before.
 
 - Launch the app by launching the app, just like you used to!
 - You can move GrowlVoice app anywhere you want.
-- You can have multiple copies of GrowlVoice running (i.e., have multiple users using GrowlVoice. This wasn't possible with [the original patch](https://gist.github.com/kroo/11205755).
+- You can have multiple copies of GrowlVoice running (i.e., have multiple users using GrowlVoice). This wasn't possible with [the original patch](https://gist.github.com/kroo/11205755).
 - The "bad JSON" popup should never show up in the first place (no unreliable GUI scripting required). This was possible with [the original patch](https://gist.github.com/kroo/11205755), but only if you had impeccable timing.
 
 ## Patch
@@ -54,9 +54,9 @@ This is [@szhu](https://www.github.com/szhu)'s automation of that process. It do
 
 - Installs cycript and the original fix to `/Library/Application Support/GrowlVoice`.
 - Installs a privileged helper (LaunchDaemon) that is bound to the world-writable socket `/Library/Application Support/GrowlVoice/socket`. This allows all users to launch the helper.
-- Modifies `GrowlVoice.app` to connect to this socket on launch:
-	- The main patch wraps the entire app with a helper app that connects to the socket and launches the app.
-	- The alternate patch adds a new executable (instead of an entire app) in `MacOS` that does the same thing. This is a much more straightforward, since this modifies the app, signed apps won't allow this.
+- Modifies `GrowlVoice.app` to connect to this socket on launch by adding a helper:
+	- The main patch wraps the entire app in a helper app.
+	- The alternate patch adds a helper executable (instead of an entire app) in `MacOS`. This is more straightforward, but since it modifies the app, signed apps won't allow this.
 
 ## Contributing
 
