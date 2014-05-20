@@ -6,9 +6,9 @@
 
 Read this!
 
-1. `defaults write com.erichoracek.GrowlVoice GVAccountsArray '({GVAccountsUsername = YOURUSERNAME;})'`
+1. `defaults write com.erichoracek.GrowlVoice GVAccountsArray '({GVAccountsUsername = "YOURUSERNAME";})'`
 
-    If you have multiple accounts, use `({GVAccountsUsername = YOURUSERNAME1;},{GVAccountsUsername = YOURUSERNAME2;})` instead.
+    If you have multiple accounts, use `({GVAccountsUsername = "YOURUSERNAME1";},{GVAccountsUsername = "YOURUSERNAME2";})` instead.
 
 2. Open the Keychain Access app.
 
