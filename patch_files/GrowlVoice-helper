@@ -14,7 +14,7 @@ injected = False
 
 while True:
 	line = gv.stderr.readline()
-	if not injected and 'Automatically Signing In...' in line:
+	if not injected and ('Automatically Signing In...' in line or 'Signing in with ' in line):
 		print 'fix_growlvoice: triggering inject'
 		nc = Popen(['nc', '-U', '/Library/Application Support/GrowlVoice/socket'], stdin=PIPE)
 		nc.stdin.write(str(gv.pid) + '\n')
