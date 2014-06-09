@@ -2,6 +2,8 @@
 
 Want to use GrowlVoice without the hassle of manually running a hack each time? Try this simple patch!
 
+**Note: This patch does not (yet) work on OS X 10.10 Yosemite. Check [#6](https://github.com/szhu/fix-growlvoice/issues/6) for updates.**
+
 ## [tl;dr](http://szhu.github.io/fix-growlvoice/)
 
 ## Features
