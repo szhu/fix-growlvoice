@@ -1,8 +1,8 @@
+| Note |
+|:----:|
+| This project has been superceded by [d235j/GVFixer](https://github.com/d235j/GVFixer), which appears to work a lot better and can be installed per-user. If you're bent on using this project instead of GVFixer, check [#6](https://github.com/szhu/fix-growlvoice/issues/6) for the discussion on Yosemite compatibility. |
+
 # Fix GrowlVoice
-
-Want to use GrowlVoice without the hassle of manually running a hack each time? Try this simple patch!
-
-**Note: This patch does not (yet) work on OS X 10.10 Yosemite. Check [#6](https://github.com/szhu/fix-growlvoice/issues/6) for updates.**
 
 ## 30-second quick install » [see here](http://szhu.github.io/fix-growlvoice/)
 
