@@ -1,6 +1,7 @@
 | Note |
 |:---- |
-| This project has been superceded by [d235j/GVFixer](https://github.com/d235j/GVFixer), which appears to work a lot better and can be installed per-user. If you're bent on using this project instead of GVFixer, check [#6](https://github.com/szhu/fix-growlvoice/issues/6) for the discussion on Yosemite compatibility. |
+| **THIS PROJECT NO LONGER WORKS DUE TO A GOOGLE API CHANGE. See #12 for discussion.** |
+| This project has been superseded by [d235j/GVFixer](https://github.com/d235j/GVFixer), which appears to work a lot better and can be installed per-user. If you're bent on using this project instead of GVFixer, check [#6](https://github.com/szhu/fix-growlvoice/issues/6) for the discussion on Yosemite compatibility. |
 
 # Fix GrowlVoice
 
